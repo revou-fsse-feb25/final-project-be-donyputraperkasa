@@ -7,9 +7,10 @@ import { UsersModule } from './users/users.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { LessonsModule } from './lessons/lessons.module';
+import { LecturesModule } from './lectures/lectures.module';
 
 @Module({
-  imports: [AnnouncementsModule, AuthModule, UsersModule, TransactionsModule, ReviewsModule, LessonsModule],
+  imports: [AnnouncementsModule, AuthModule, UsersModule, TransactionsModule, ReviewsModule, LessonsModule, LecturesModule],
   controllers: [AppController],
   providers: [AppService],
 })

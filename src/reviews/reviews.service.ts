@@ -13,21 +13,20 @@ export class ReviewsService {
         rating: createReviewDto.rating,
         comment: createReviewDto.comment,
         user: { connect: { id: createReviewDto.userId } },
-        course: { connect: { id: createReviewDto.courseId } },
       },
     });
   }
 
   findAll() {
     return this.prisma.review.findMany({
-      include: { user: true, course: true },
+      include: { user: true },
     });
   }
 
   findOne(id: number) {
     return this.prisma.review.findUnique({
       where: { id },
-      include: { user: true, course: true },
+      include: { user: true },
     });
   }
 

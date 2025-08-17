@@ -15,9 +15,6 @@ export class TransactionsService {
         user: {
           connect: { id: createTransactionDto.userId }
         },
-        course: {
-          connect: { id: createTransactionDto.courseId }
-        }
       },
     });
   }
@@ -26,7 +23,6 @@ export class TransactionsService {
     return this.prisma.transaction.findMany({
       include: {
         user: true,
-        course: true,
       },
     });
   }
@@ -36,7 +32,6 @@ export class TransactionsService {
       where: { id },
       include: {
         user: true,
-        course: true,
       },
     });
   }
