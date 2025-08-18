@@ -18,6 +18,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   const port = process.env.PORT || 3000;
+  console.log('DATABASE_URL in Railway:', process.env.DATABASE_URL);
   await app.listen(port);
   console.log(`🚀 App running on http://localhost:${port}`);
 }
