@@ -39,5 +39,6 @@ async function bootstrap() {
 
   await app.listen(port);
   console.log(`🚀 App running on http://localhost:${port}`);
+  console.log("DATABASE_URL (Railway):", process.env.DATABASE_URL);
 }
 bootstrap();
