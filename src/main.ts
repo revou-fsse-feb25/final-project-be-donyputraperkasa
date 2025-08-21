@@ -17,8 +17,10 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:3000',
-      'https://final-project-fe-donyputraperkasa.vercel.app',
+      'https://localhost:3001',
+      'https://final-project-be-donyputraperkasa-production-dfe8.up.railway.app/'
     ],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
 
