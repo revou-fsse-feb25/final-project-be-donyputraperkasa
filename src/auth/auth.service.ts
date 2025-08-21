@@ -10,11 +10,12 @@ export class AuthService {
 
   async validateUser(email: string, password: string) {
     const user = await this.usersService.findByEmail(email);
-    if (!user) throw new UnauthorizedException('Invalid email or password (Email atau kata sandi salah)');
+    if (!user) throw new UnauthorizedException('Invalid email or password');
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) throw new UnauthorizedException('Invalid email or password (Email atau kata sandi salah)');
+    if (!isMatch) throw new UnauthorizedException('Invalid email or password');
 
+    // hapus password sebelum return
     const { password: _, ...result } = user;
     return result;
   }
@@ -26,17 +27,16 @@ export class AuthService {
     };
   }
 
-  async register({ email, password, name }: CreateUserDto) {
-    const existingUser = await this.usersService.findByEmail(email);
+  async register(dto: CreateUserDto) {
+    const existingUser = await this.usersService.findByEmail(dto.email);
     if (existingUser) {
-      throw new UnauthorizedException('Email already in use (Email sudah digunakan)');
+      throw new UnauthorizedException('Email already in use');
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await this.usersService.create({
-      email,
-      password: hashedPassword,
-      name,
-    });
+
+    // create user dengan password di-hash di UsersService.create()
+    const newUser = await this.usersService.create(dto);
+
+    // login langsung setelah register
     return this.login(newUser);
   }
 }

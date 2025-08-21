@@ -42,8 +42,18 @@ export class UsersService {
     });
   }
 
-  findByEmail(email: string) {
-    return this.prisma.user.findUnique({ where: { email } });
+  // **Penting: include password agar bisa dibandingkan saat login**
+  async findByEmail(email: string) {
+    return this.prisma.user.findUnique({
+      where: { email },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+        password: true, // wajib di-include
+      },
+    });
   }
 
   findById(id: string) {
