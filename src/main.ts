@@ -18,7 +18,7 @@ async function bootstrap() {
     origin: [
       'http://localhost:3000',
       'http://localhost:3001',
-      'https://final-project-be-donyputraperkasa-production-dfe8.up.railway.app/'
+      'https://final-project-be-donyputraperkasa-production-dfe8.up.railway.app'
     ],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
