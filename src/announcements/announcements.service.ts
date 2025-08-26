@@ -15,4 +15,12 @@ export class AnnouncementsService {
       orderBy: { createdAt: 'desc' },
     });
   }
+
+  update(id: string, data: { title: string; content: string }) {
+    return this.prisma.announcement.update({ where: { id }, data });
+  }
+
+  remove(id: string) {
+    return this.prisma.announcement.delete({ where: { id } });
+  }
 }
